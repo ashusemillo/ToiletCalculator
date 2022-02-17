@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <appSettings>
+        <!-- Toilet Calculator Environment-->
+        <add key="ENV" value="TEST" />
+        <add key="APP_URL" value="https://www.building.govt.nz/building-code-compliance/g-services-and-facilities/g1-personal-hygiene/calculator-for-toilet-pan/toilet-calculator/" />
+        <add key="REPORT" value="target\Reports" />
+        <add key ="DRIVER" value="chrome"/>
+        <add key="HEADLESS" value="false"/>
+    </appSettings>
+</configuration>
