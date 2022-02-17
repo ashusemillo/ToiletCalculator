@@ -41,6 +41,9 @@ public class CalculatorPage {
     @FindBy(xpath = "//app-calculator/app-calculation-result")
     public WebElement calculator_result_mat_card;
 
+    @FindBy(xpath = "//mat-card/div/div[contains(text(),'Option')]")
+    public WebElement calculator_result_mat_card_option;
+
     public void inputText(String fieldLabel, String text){
         try{
             WebElement element = occupantDensities_formArray.findElement(By.xpath(".//span/label/mat-label[contains(text(),'"+fieldLabel+"')]//ancestor::div[contains(@class,'mat-form-field-infix')]//input"));

@@ -6,6 +6,8 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         glue = "gluecode",
         features = "src/test/java/resources/features/CalculatorPage/",
+        plugin = { "pretty", "html:target/reports/cucumber-reports.html" },
+        monochrome = true,
         tags = "@execute"
         )
 public class testRunner extends AbstractTestNGCucumberTests {

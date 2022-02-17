@@ -10,12 +10,14 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import pageobjects.CalculatorPage;
 import utils.ConfigManager;
 import utils.Helper;
 
 import java.util.Map;
+
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CalculatorPageStepDefs {
     private CalculatorPage calculatorPage;
@@ -52,7 +54,7 @@ public class CalculatorPageStepDefs {
     @When("user enters the space details to calculate occupant densities")
     public void user_enters_the_space_details_to_calculate_occupant_densities(DataTable dataTableForHospital) {
         Map<String, String> columns = dataTableForHospital.asMap(String.class, String.class);
-            columns.forEach((fieldLabel,text)->calculatorPage.inputText(fieldLabel, text));
+            columns.forEach((fieldLabel,text)->{calculatorPage.inputText(fieldLabel, text);});
     }
 
 
@@ -60,12 +62,12 @@ public class CalculatorPageStepDefs {
     public void numberOfToiletFacilitiesShouldBeCalculated() {
         calculatorPage.submit_button.click();
         //calculatorPage.clickButton(driver, calculatorPage.submit_button);
-        //Helper.waitUntilVisibilityOf(driver, calculatorPage.calculator_result_mat_card, 5);
+        Helper.waitUntilVisibilityOf(driver, calculatorPage.calculator_result_mat_card, 5);
     }
 
     @And("one or more options to recommend should be displayed")
     public void oneOrMoreOptionsToRecommendShouldBeDisplayed() {
-        Assert.assertTrue(true);
+        assertThat(calculatorPage.calculator_result_mat_card_option.getText(), containsString("Option"));
     }
 
     @After
