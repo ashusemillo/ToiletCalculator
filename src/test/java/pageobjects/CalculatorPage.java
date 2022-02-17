@@ -7,6 +7,10 @@ import utils.Helper;
 
 public class CalculatorPage {
 
+    /**
+     * constructor to initialize elements
+     * @param driver
+     */
     public CalculatorPage(WebDriver driver){
         PageFactory.initElements(driver, this);
     }
@@ -44,6 +48,11 @@ public class CalculatorPage {
     @FindBy(xpath = "//mat-card/div/div[contains(text(),'Option')]")
     public WebElement calculator_result_mat_card_option;
 
+    /**
+     * function to send text to input field
+     * @param fieldLabel - label displayed for the text field
+     * @param text - text to send
+     */
     public void inputText(String fieldLabel, String text){
         try{
             WebElement element = occupantDensities_formArray.findElement(By.xpath(".//span/label/mat-label[contains(text(),'"+fieldLabel+"')]//ancestor::div[contains(@class,'mat-form-field-infix')]//input"));
@@ -55,7 +64,12 @@ public class CalculatorPage {
         }
     }
 
-    public void selectBuildingUse(WebDriver driver, String building_use) throws InterruptedException {
+    /**
+     * function to select building use from the list options
+     * @param driver - webdriver instance
+     * @param building_use - visible test from available options
+     */
+    public void selectBuildingUse(WebDriver driver, String building_use) {
         buildingUse_select.click();
         Helper.waitUntilVisibilityOf(driver, buildingUse_list, 1);
         WebElement element = buildingUse_list.findElement(By.xpath("//span[contains(text(),'" + building_use + "')]"));
@@ -63,6 +77,11 @@ public class CalculatorPage {
         element.click();
     }
 
+    /**
+     * function to click on the button
+     * @param driver - webdriver instance
+     * @param element - element to perform action on
+     */
     public void clickButton(WebDriver driver, WebElement element){
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", element);

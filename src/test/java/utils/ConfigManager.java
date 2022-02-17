@@ -18,9 +18,7 @@ import java.util.Map;
 public class ConfigManager {
     private static ConfigManager instance;
     private static final Logger logger = LogManager.getLogger("");
-    private HashMap<String, String> configValues = new HashMap();
-    private static final String CONFIG = "configFilePath";
-    private static final String FILE = "configuration.xml";
+    private HashMap<String, String> configValues = new HashMap<>();
     private String errorMsg = "Duplicate Keys found in configuration:\n";
 
     public static ConfigManager instance() {
@@ -37,7 +35,7 @@ public class ConfigManager {
     private void init() {
         try {
             String filePath = "configuration.xml";
-            this.checkExists((new File(filePath)).exists(), "cannot find config file {" + filePath + "}");
+            checkExists((new File(filePath)).exists(), "cannot find config file {" + filePath + "}");
             this.loadUserConfig(filePath);
         } catch (Exception var) {
             throw new RuntimeException(var);
@@ -45,7 +43,7 @@ public class ConfigManager {
     }
 
     public String getByKey(String key) {
-        return (String)this.configValues.getOrDefault(key, "");
+        return this.configValues.getOrDefault(key, "");
     }
 
     private void loadUserConfig(String filePath) {
@@ -64,10 +62,10 @@ public class ConfigManager {
         Element rootNode = xmlFile.getRootElement();
         List<Element> list = rootNode.getChildren("appSettings");
         if (list.size() != 0) {
-            Iterator var5 = ((Element)list.get(0)).getChildren("add").iterator();
+            Iterator<Element> var5 = (list.get(0)).getChildren("add").iterator();
 
             while(var5.hasNext()) {
-                Element e = (Element)var5.next();
+                Element e = var5.next();
                 String key = e.getAttributeValue("key");
                 String value = e.getAttributeValue("value");
                 if (handle.containsKey(key)) {
